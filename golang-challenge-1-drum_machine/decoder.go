@@ -65,5 +65,8 @@ type Step struct {
 
 func (p *Step) String() string {
 	str := ""
+
+	str += p.note
+
 	return str
 }
