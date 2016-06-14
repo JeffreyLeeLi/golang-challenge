@@ -12,4 +12,18 @@ func DecodeFile(path string) (*Pattern, error) {
 // Pattern is the high level representation of the
 // drum pattern contained in a .splice file.
 // TODO: implement
-type Pattern struct{}
+type Pattern struct {
+	version string
+	tempo   string
+	tracks  []Track
+}
+
+type Track struct {
+	id    string
+	name  string
+	steps []Step
+}
+
+type Step struct {
+	note string
+}
