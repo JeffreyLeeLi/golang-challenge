@@ -18,12 +18,39 @@ type Pattern struct {
 	tracks  []Track
 }
 
+func (p *Pattern) String() string {
+	str := ""
+
+	str += "Saved with HW Version: " + p.version
+	str += "Tempo: " + p.tempo
+
+	for i, t := range p.tracks {
+		if i > 0 {
+			str += "\n"
+		}
+
+		str += strings.Sprintf(t)
+	}
+
+	return str
+}
+
 type Track struct {
 	id    string
 	name  string
 	steps []Step
 }
 
+func (p *Track) String() string {
+	str := ""
+	return str
+}
+
 type Step struct {
 	note string
+}
+
+func (p *Step) String() string {
+	str := ""
+	return str
 }
