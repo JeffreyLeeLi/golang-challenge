@@ -43,6 +43,19 @@ type Track struct {
 
 func (p *Track) String() string {
 	str := ""
+
+	str += strings.Sprintf("(%s) %s\t", p.id, p.name)
+
+	for i, s := range p.steps {
+		if i%4 == 0 {
+			str += "|"
+		}
+
+		str += strings.Sprint(s)
+	}
+
+	str += "|"
+
 	return str
 }
 
