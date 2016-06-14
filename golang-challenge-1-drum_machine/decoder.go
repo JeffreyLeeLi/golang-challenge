@@ -1,5 +1,7 @@
 package drum
 
+import "fmt"
+
 // DecodeFile decodes the drum machine file found at the provided path
 // and returns a pointer to a parsed pattern which is the entry point to the
 // rest of the data.
@@ -14,7 +16,7 @@ func DecodeFile(path string) (*Pattern, error) {
 // TODO: implement
 type Pattern struct {
 	version string
-	tempo   string
+	tempo   int
 	tracks  []Track
 }
 
@@ -22,21 +24,21 @@ func (p *Pattern) String() string {
 	str := ""
 
 	str += "Saved with HW Version: " + p.version
-	str += "Tempo: " + p.tempo
+	str += fmt.Sprintf("Tempo: %d", p.tempo)
 
 	for i, t := range p.tracks {
 		if i > 0 {
 			str += "\n"
 		}
 
-		str += strings.Sprintf(t)
+		str += fmt.Sprintf(t)
 	}
 
 	return str
 }
 
 type Track struct {
-	id    string
+	id    int
 	name  string
 	steps []Step
 }
@@ -44,14 +46,14 @@ type Track struct {
 func (p *Track) String() string {
 	str := ""
 
-	str += strings.Sprintf("(%s) %s\t", p.id, p.name)
+	str += fmt.Sprintf("(%s) %s\t", p.id, p.name)
 
 	for i, s := range p.steps {
 		if i%4 == 0 {
 			str += "|"
 		}
 
-		str += strings.Sprint(s)
+		str += fmt.Sprint(s)
 	}
 
 	str += "|"
@@ -60,13 +62,13 @@ func (p *Track) String() string {
 }
 
 type Step struct {
-	note string
+	note byte
 }
 
 func (p *Step) String() string {
 	str := ""
 
-	str += p.note
+	str += string(p.note)
 
 	return str
 }
